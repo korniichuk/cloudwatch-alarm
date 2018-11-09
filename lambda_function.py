@@ -27,7 +27,7 @@ def lambda_handler(event, context):
     alarm_name = message['AlarmName']
     reason = message['NewStateReason']
 
-    attachments = [{'title': 'Reason', 'text': reason, 'color': 'danger'}]
+    attachments = [{'title': 'Reason :fire:', 'text': reason, 'color': 'danger'}]
     slack_message = {
         'channel': SLACK_CHANNEL,
         'username': 'Amazon CloudWatch',
