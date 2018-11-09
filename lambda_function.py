@@ -13,33 +13,36 @@ ENCRYPTED_HOOK_URL = os.environ['kmsEncryptedHookUrl']
 # The Slack channel to send a message to stored in the slackChannel environment variable
 SLACK_CHANNEL = os.environ['slackChannel']
 
-HOOK_URL = "https://" + boto3.client('kms').decrypt(CiphertextBlob=b64decode(ENCRYPTED_HOOK_URL))['Plaintext'].decode('utf-8')
+HOOK_URL = 'https://' + boto3.client('kms').decrypt(CiphertextBlob=b64decode(ENCRYPTED_HOOK_URL))['Plaintext'].decode('utf-8')
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
 
 def lambda_handler(event, context):
-    logger.info("Event: " + str(event))
+    logger.info('Event: ' + str(event))
     message = json.loads(event['Records'][0]['Sns']['Message'])
-    logger.info("Message: " + str(message))
+    logger.info('Message: ' + str(message))
 
     alarm_name = message['AlarmName']
-    #old_state = message['OldStateValue']
-    new_state = message['NewStateValue']
     reason = message['NewStateReason']
 
+    attachments = [{'title': 'Reason', 'text': reason, 'color': 'danger'}]
     slack_message = {
         'channel': SLACK_CHANNEL,
-        'text': "%s state is now %s: %s" % (alarm_name, new_state, reason)
+        'username': 'Amazon CloudWatch',
+        'icon_url': 'https://s3-eu-west-1.amazonaws.com/' \
+                    'dad-cloudwatch/cloudwatch_icon.png',
+        'text': '`%s`' % alarm_name,
+        'attachments': attachments
     }
 
     req = Request(HOOK_URL, json.dumps(slack_message).encode('utf-8'))
     try:
         response = urlopen(req)
         response.read()
-        logger.info("Message posted to %s", slack_message['channel'])
+        logger.info('Message posted to %s', slack_message['channel'])
     except HTTPError as e:
-        logger.error("Request failed: %d %s", e.code, e.reason)
+        logger.error('Request failed: %d %s', e.code, e.reason)
     except URLError as e:
-        logger.error("Server connection failed: %s", e.reason)
+        logger.error('Server connection failed: %s', e.reason)
