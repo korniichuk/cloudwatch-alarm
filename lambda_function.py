@@ -1,7 +1,9 @@
-import boto3
 import json
 import logging
 import os
+import uuid
+
+import boto3
 
 from base64 import b64decode
 from urllib.request import Request, urlopen
@@ -32,7 +34,7 @@ def lambda_handler(event, context):
         "end": "P0D",
         "timezone": "+0100"}"""
     bucket_name = 'examplebucket' # for temporary public file
-    filename = 'tmp_cloudwatch_metric_chart.png' # of temporary public file
+    filename = 'tmp_cloudwatch_metric_chart_%s.png' % uuid.uuid4()
 
     # Get MetricWidgetImage from CloudWatch Metrics
     response = boto3.client('cloudwatch') \
@@ -81,5 +83,5 @@ def lambda_handler(event, context):
         logger.error('Request failed: %d %s', e.code, e.reason)
     except URLError as e:
         logger.error('Server connection failed: %s', e.reason)
-    # Delete `tmp_cloudwatch_metric_chart.png` public file
-    boto3.client('s3').delete_object(Bucket=bucket_name, Key='chart.png')
+    # Shedule deletion of `tmp_cloudwatch_metric_chart_*.png` public file
+    # TODO
