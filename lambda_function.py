@@ -20,22 +20,34 @@ logger.setLevel(logging.INFO)
 
 
 def lambda_handler(event, context):
+
+    icon_url = 'https://raw.githubusercontent.com/korniichuk/' \
+               'cloudwatch-alarm/master/img/amazon_cloudwatch_icon.png'
+
     logger.info('Event: ' + str(event))
     message = json.loads(event['Records'][0]['Sns']['Message'])
     logger.info('Message: ' + str(message))
-
     alarm_name = message['AlarmName']
     reason = message['NewStateReason']
-
-    attachments = [{'title': 'Reason :fire:', 'text': reason, 'color': 'danger'}]
+    attachments = [{
+        'title': 'Reason :fire:',
+        'text': reason,
+        'color': 'danger',
+        'fields': [
+            {
+            'title': 'Confluence',
+            'value': 'http://www.korniichuk.com',
+            'short': True},
+            {
+            'title': 'CloudWatch',
+            'value': 'http://www.korniichuk.com',
+            'short': True}]}]
     slack_message = {
         'channel': SLACK_CHANNEL,
         'username': 'Amazon CloudWatch',
-        'icon_url': 'https://s3-eu-west-1.amazonaws.com/' \
-                    'dad-cloudwatch/cloudwatch_icon.png',
+        'icon_url': icon_url,
         'text': '`%s`' % alarm_name,
-        'attachments': attachments
-    }
+        'attachments': attachments}
 
     req = Request(HOOK_URL, json.dumps(slack_message).encode('utf-8'))
     try:
