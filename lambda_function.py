@@ -21,8 +21,19 @@ logger.setLevel(logging.INFO)
 
 def lambda_handler(event, context):
 
+    confluence_url = 'http://www.korniichuk.com'
+    cloudwatch_url = 'http://www.korniichuk.com'
     icon_url = 'https://raw.githubusercontent.com/korniichuk/' \
                'cloudwatch-alarm/master/img/amazon_cloudwatch_icon.png'
+    metric ="""{
+        'metrics': [[
+            'LogMetrics',
+            'MetricName',
+            {'period': 3600, 'stat': 'Sum'}]],
+        'title': 'Title',
+        'start': '-P1D',
+        'end': 'P0D',
+        'timezone': '+0100'}"""
 
     logger.info('Event: ' + str(event))
     message = json.loads(event['Records'][0]['Sns']['Message'])
@@ -36,11 +47,11 @@ def lambda_handler(event, context):
         'fields': [
             {
             'title': 'Confluence',
-            'value': 'http://www.korniichuk.com',
+            'value': confluence_url,
             'short': True},
             {
             'title': 'CloudWatch',
-            'value': 'http://www.korniichuk.com',
+            'value': cloudwatch_url,
             'short': True}]}]
     slack_message = {
         'channel': SLACK_CHANNEL,
