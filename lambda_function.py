@@ -34,7 +34,7 @@ def lambda_handler(event, context):
         "end": "P0D",
         "timezone": "+0100"}"""
     bucket_name = 'examplebucket' # for temporary public file
-    filename = 'tmp_cloudwatch_metric_chart_%s.png' % uuid.uuid4()
+    filename = '/tmp/cloudwatch_metric_chart_%s.png' % uuid.uuid4()
 
     # Get MetricWidgetImage from CloudWatch Metrics
     response = boto3.client('cloudwatch') \
@@ -83,5 +83,3 @@ def lambda_handler(event, context):
         logger.error('Request failed: %d %s', e.code, e.reason)
     except URLError as e:
         logger.error('Server connection failed: %s', e.reason)
-    # Shedule deletion of `tmp_cloudwatch_metric_chart_*.png` public file
-    # TODO
