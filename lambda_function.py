@@ -34,7 +34,7 @@ def lambda_handler(event, context):
         "end": "P0D",
         "timezone": "+0100"}"""
     bucket_name = 'examplebucket' # for temporary public file
-    filename = '/tmp/cloudwatch_metric_chart_%s.png' % uuid.uuid4()
+    filename = 'tmp/cloudwatch_metric_chart_%s.png' % uuid.uuid4()
 
     # Get MetricWidgetImage from CloudWatch Metrics
     response = boto3.client('cloudwatch') \
