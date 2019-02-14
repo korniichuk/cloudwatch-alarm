@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+# Version: 0.1a1
+
 import json
 import logging
 import os
