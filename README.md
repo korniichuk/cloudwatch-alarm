@@ -5,6 +5,8 @@
 
 ## Table of Contents
 * **[Introduction](#introduction)**
+  * **[Amazon CloudWatch Alarm 2.0](#smazon-cloudWatch-alarm_20)**
+  * **[Standard Amazon CloudWatch Alarm](#standard-amazon-cloudWatch-alarm)**
 * **[How it works](#how-it-works)**
 * **[Requirements](#requirements)**
 * **[Python lib versions](#python-lib-versions)**
