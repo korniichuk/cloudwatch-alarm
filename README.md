@@ -20,9 +20,9 @@ $ sudo pip install -t . -r requirements.txt
 * [botocore](https://pypi.org/project/botocore/) ver. 1.12.41
 
 ## Create Slack webhook
-Navigate to https://`<your-team-domain>`.slack.com/services/new, like https://example.slack.com/services/new. Search for and select `Incoming WebHooks`. Click `Add Configuration` button:
+Navigate to https://`<your-team-domain>`.slack.com/apps, like https://example.slack.com/apps. Search for and select `Incoming WebHooks`. Click `Add Configuration` button:
 
-![add_configuration.png](img/add_configuration.png "Create Slack webhook. Add Configuration")
+![slack_-_add_configuration.png](img/slack_-_add_configuration.png "Create Slack webhook. Add Configuration")
 
 Choose the default channel where messages will be sent (like `#example`) and click `Add Incoming WebHooks Integration`. Copy and save the webhook URL (like https://hooks.slack.com/services/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) from the setup instructions.
 
