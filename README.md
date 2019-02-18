@@ -6,13 +6,27 @@
 ## Table of Contents
 * **[Requirements](#requirements)**
 * **[Python lib versions](#python-lib-versions)**
+* **[Create Slack webhook](#create-slack-webhook)**
+* **[Create Amazon SNS topic](#create-amazon-sns-topic)**
 
 ## Requirements
 Please, install Python packages:
 ```
-$ sudo pip install -t. -r requirements.txt
+$ sudo pip install -t . -r requirements.txt
 ```
 
 ## Python lib versions
 * [boto3](https://pypi.org/project/boto3/) ver. 1.9.41
 * [botocore](https://pypi.org/project/botocore/) ver. 1.12.41
+
+## Create Slack webhook
+Navigate to https://`<your-team-domain>`.slack.com/services/new, like https://example.slack.com/services/new. Search for and select `Incoming WebHooks`. Click `Add Configuration` button:
+
+![add_configuration.png](img/add_configuration.png "Create Slack webhook. Add Configuration")
+
+Choose the default channel where messages will be sent (like `#example`) and click `Add Incoming WebHooks Integration`. Copy and save the webhook URL (like https://hooks.slack.com/services/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) from the setup instructions.
+
+**Note:** You need admin rights to your Slack.
+
+## Create Amazon SNS topic
+Create new [Amazon SNS](https://aws.amazon.com/sns/) topic: https://docs.aws.amazon.com/sns/latest/dg/sns-getting-started.html#CreateTopic. Like `example` topic with `arn:aws:sns:eu-west-1:539199393880:example` ARN.
