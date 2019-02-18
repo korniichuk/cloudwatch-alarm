@@ -5,7 +5,7 @@
 
 ## Table of Contents
 * **[Introduction](#introduction)**
-  * **[Amazon CloudWatch Alarm 2.0](#smazon-cloudWatch-alarm_20)**
+  * **[Amazon CloudWatch Alarm 2.0](#amazon-cloudwatch-alarm-20)**
   * **[Standard Amazon CloudWatch Alarm](#standard-amazon-cloudWatch-alarm)**
 * **[How it works](#how-it-works)**
 * **[Requirements](#requirements)**
