@@ -4,10 +4,19 @@
 **GitHub:** https://github.com/korniichuk/cloudwatch-alarm
 
 ## Table of Contents
+* **[Introduction](#introduction)**
+* **[How it works](#how-it-works)**
 * **[Requirements](#requirements)**
 * **[Python lib versions](#python-lib-versions)**
 * **[Create Slack webhook](#create-slack-webhook)**
 * **[Create Amazon SNS topic](#create-amazon-sns-topic)**
+
+## Introduction
+### Amazon CloudWatch Alarm 2.0
+![amazon_cloudwatch_alarm_smart.png](img/amazon_cloudwatch_alarm_smart.png "Amazon CloudWatch Alarm 2.0")
+
+### Standard Amazon CloudWatch Alarm
+![amazon_cloudwatch_alarm_standard.png](img/amazon_cloudwatch_alarm_standard.png "Standard Amazon CloudWatch Alarm")
 
 ## How it works
 ![how_it_works.jpg](img/how_it_works.jpg "How it works")
