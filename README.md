@@ -29,4 +29,6 @@ Choose the default channel where messages will be sent (like `#example`) and cli
 **Note:** You need admin rights to your Slack.
 
 ## Create Amazon SNS topic
-Create new [Amazon SNS](https://aws.amazon.com/sns/) topic: https://docs.aws.amazon.com/sns/latest/dg/sns-getting-started.html#CreateTopic. Like `example` topic with `arn:aws:sns:eu-west-1:539199393880:example` ARN.
+Create new [Amazon SNS](https://aws.amazon.com/sns/) topic: https://docs.aws.amazon.com/sns/latest/dg/sns-getting-started.html#CreateTopic. Like `example` topic with `arn:aws:sns:eu-west-1:539199393808:example` ARN.
+
+![sns_-_topic_details.png](img/sns_-_topic_details.png "Create Amazon SNS topic. Topic details")
