@@ -9,6 +9,9 @@
 * **[Create Slack webhook](#create-slack-webhook)**
 * **[Create Amazon SNS topic](#create-amazon-sns-topic)**
 
+## How it works
+![how_it_works.jpg](img/how_it_works.jpg "How it works")
+
 ## Requirements
 Please, install Python packages:
 ```
