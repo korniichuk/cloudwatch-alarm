@@ -101,7 +101,7 @@ Enter function name (e.g. `example`) to `Name` field. In `Role` select `Create a
 
 ![lambda_-_basic_information.png](img/lambda_-_basic_information.png "Create Amazon Lambda function. Basic information")
 
-Go to `SNS trigger` section and select [your SNS topic]((#create-amazon-sns-topic)). For example: `example` topic with `arn:aws:sns:eu-west-1:539199393808:example` ARN. Select the `Enable trigger` checkbox.
+Go to `SNS trigger` section and select [your SNS topic](#create-amazon-sns-topic). For example: `example` topic with `arn:aws:sns:eu-west-1:539199393808:example` ARN. Select the `Enable trigger` checkbox.
 
 ![lambda_-_sns_trigger.png](img/lambda_-_sns_trigger.png "Create Amazon Lambda function. SNS trigger")
 
