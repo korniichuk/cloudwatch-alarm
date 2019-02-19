@@ -12,6 +12,7 @@
 * **[Python lib versions](#python-lib-versions)**
 * **[Create Slack webhook](#create-slack-webhook)**
 * **[Create Amazon SNS topic](#create-amazon-sns-topic)**
+* **[Create Amazon S3 bucket](#create-amazon-s3-bucket)**
 
 ## Introduction
 ### Amazon CloudWatch Alarm 2.0
@@ -46,3 +47,12 @@ Choose the default channel where messages will be sent (like `#example`) and cli
 Create new [Amazon SNS](https://aws.amazon.com/sns/) topic: https://docs.aws.amazon.com/sns/latest/dg/sns-getting-started.html#CreateTopic. Like `example` topic with `arn:aws:sns:eu-west-1:539199393808:example` ARN.
 
 ![sns_-_topic_details.png](img/sns_-_topic_details.png "Create Amazon SNS topic. Topic details")
+
+## Create Amazon S3 bucket
+Create new Amazon S3 Bucket (e.g. `examplebucket`). Create new lifecyle rule for bucket (e.g. `DeleteTmpAfter72h`) with `tmp/` prefix filter:
+
+![s3_-_lifecycle_rule.png](img/s3_-_lifecycle_rule.png "Create Amazon S3 bucket. Lifecycle rule")
+
+Configure expiration as below. Expire after 3 days. Permanently delete after 3 days. Clean up incomplete multipart uploads after 1 day.
+
+![s3_-_configure_expiration](img/s3_-_configure_expiration.png "Create Amazon S3 bucket. Configure expiration")
