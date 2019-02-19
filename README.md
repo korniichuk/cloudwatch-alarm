@@ -12,6 +12,7 @@
 * **[Python lib versions](#python-lib-versions)**
 * **[Create Slack webhook](#create-slack-webhook)**
 * **[Create Amazon SNS topic](#create-amazon-sns-topic)**
+* **[Create Amazon CloudWatch Alarm](#create-amazon-cloudWatch-alarm)**
 * **[Create Amazon S3 bucket](#create-amazon-s3-bucket)**
 
 ## Introduction
@@ -47,6 +48,40 @@ Choose the default channel where messages will be sent (like `#example`) and cli
 Create new [Amazon SNS](https://aws.amazon.com/sns/) topic: https://docs.aws.amazon.com/sns/latest/dg/sns-getting-started.html#CreateTopic. Like `example` topic with `arn:aws:sns:eu-west-1:539199393808:example` ARN.
 
 ![sns_-_topic_details.png](img/sns_-_topic_details.png "Create Amazon SNS topic. Topic details")
+
+## Create Amazon CloudWatch Alarm
+Go to [Amazon CloudWatch](https://aws.amazon.com/cloudwatch/) and create new CloudWatch Alarm. Click `Select metric` button:
+
+![cloudwatch_-_select_metric.png](img/cloudwatch_-_select_metric.png "Create Amazon CloudWatch Alarm. Select metric")
+
+Select metric, like `EC2 -> Per-Instance Metrics -> CPUUtilization`:
+
+![cloudwatch_-_cpuutilization.png](img/cloudwatch_-_cpuutilization.png "Create Amazon CloudWatch Alarm. CPUUtilization")
+
+Choose `Source` tab and select `Image API` checkbox. Copy and save json code. Click `Select metric` button:
+
+![cloudwatch_-_image_api.png](img/cloudwatch_-_image_api.png "Create Amazon CloudWatch Alarm. Image API")
+
+Saved json code example:
+```
+{
+    "metrics": [
+        [ "AWS/EC2", "CPUUtilization", "InstanceId", "i-0d91fdf2dbb765977" ]
+    ],
+    "start": "-PT3H",
+    "end": "P0D",
+    "timezone": "+0100"
+}
+```
+
+Set up `Alarm Details`. Enter `Name` (e.g. `CPUUtilization`) and `Description` (e.g. `The percentage of CPU utilization`). Specify the alarm condition. For example: select `>=`, enter `80`, and enter `3` datapoints.
+
+![cloudwatch_-_alarm_details.png](img/cloudwatch_-_alarm_details.png "Create Amazon CloudWatch Alarm. Alarm details")
+
+Connect CloudWatch Alarm to [created SNS topic](#create-amazon-sns-topic):
+![cloudwatch_-_actions.png](img/cloudwatch_-_actions.png "Create Amazon CloudWatch Alarm. Actions")
+
+**AWS docs:** https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html
 
 ## Create Amazon S3 bucket
 Create new Amazon S3 Bucket (e.g. `examplebucket`). Create new lifecyle rule for bucket (e.g. `DeleteTmpAfter72h`) with `tmp/` prefix filter:
