@@ -14,6 +14,7 @@
 * **[Create Amazon SNS topic](#create-amazon-sns-topic)**
 * **[Create Amazon CloudWatch Alarm](#create-amazon-cloudWatch-alarm)**
 * **[Create Amazon S3 bucket](#create-amazon-s3-bucket)**
+* **[Create Amazon Lambda function](#create-amazon-lambda-function)**
 
 ## Introduction
 ### Amazon CloudWatch Alarm 2.0
