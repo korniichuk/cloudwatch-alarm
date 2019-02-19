@@ -50,7 +50,7 @@ Create new [Amazon SNS](https://aws.amazon.com/sns/) topic: https://docs.aws.ama
 ![sns_-_topic_details.png](img/sns_-_topic_details.png "Create Amazon SNS topic. Topic details")
 
 ## Create Amazon CloudWatch Alarm
-Go to [Amazon CloudWatch](https://aws.amazon.com/cloudwatch/) and create new CloudWatch Alarm. Click `Select metric` button:
+Navigate to https://console.aws.amazon.com/cloudwatch/ and create new Amazon CloudWatch Alarm. Click `Select metric` button:
 
 ![cloudwatch_-_select_metric.png](img/cloudwatch_-_select_metric.png "Create Amazon CloudWatch Alarm. Select metric")
 
@@ -74,20 +74,29 @@ Saved json code example:
 }
 ```
 
-Set up `Alarm Details`. Enter `Name` (e.g. `CPUUtilization`) and `Description` (e.g. `The percentage of CPU utilization`). Specify the alarm condition. For example: select `>=`, enter `80`, and enter `3` datapoints.
+Set up `Alarm details`. Enter `Name` (e.g. `CPUUtilization`) and `Description` (e.g. `The percentage of CPU utilization`). Specify the alarm condition. For example: select `>=`, enter `80`, and enter `3` datapoints.
 
 ![cloudwatch_-_alarm_details.png](img/cloudwatch_-_alarm_details.png "Create Amazon CloudWatch Alarm. Alarm details")
 
-Connect CloudWatch Alarm to [created SNS topic](#create-amazon-sns-topic):
+Connect CloudWatch Alarm to [created SNS topic](#create-amazon-sns-topic) and finally click `Create Alarm` button:
 ![cloudwatch_-_actions.png](img/cloudwatch_-_actions.png "Create Amazon CloudWatch Alarm. Actions")
 
 **AWS docs:** https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html
 
 ## Create Amazon S3 bucket
-Create new Amazon S3 Bucket (e.g. `examplebucket`). Create new lifecyle rule for bucket (e.g. `DeleteTmpAfter72h`) with `tmp/` prefix filter:
+Navigate to https://console.aws.amazon.com/s3/ and create new S3 bucket (e.g. `examplebucket`). Create new lifecyle rule for bucket (e.g. `DeleteTmpAfter72h`) with `tmp/` prefix filter:
 
 ![s3_-_lifecycle_rule.png](img/s3_-_lifecycle_rule.png "Create Amazon S3 bucket. Lifecycle rule")
 
 Configure expiration as below. Expire after 3 days. Permanently delete after 3 days. Clean up incomplete multipart uploads after 1 day.
 
 ![s3_-_configure_expiration](img/s3_-_configure_expiration.png "Create Amazon S3 bucket. Configure expiration")
+
+## Create Amazon Lambda function
+Navigate to https://console.aws.amazon.com/lambda/. Click `Create function`. Click `Blueprints`. Search for and select `cloudwatch-alarm-to-slack-python3`. Click `Configure` button:
+
+![lambda_-_blueprints.png](img/lambda_-_blueprints.png "Create Amazon Lambda function. Blueprints")
+
+Enter function name (e.g. `example`) to `Name` field. In `Role` select `Create a new role from one or more templates.` In `Role name` field enter role name (e.g. `example`).
+
+![lambda_-_basic_information.png](img/lambda_-_basic_information.png "Create Amazon Lambda function. Basic information")
