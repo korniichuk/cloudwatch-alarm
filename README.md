@@ -103,13 +103,13 @@ Enter function name (e.g. `example`) to `Name` field. In `Role` select `Create a
 
 Go to `SNS trigger` section and select [your SNS topic]((#create-amazon-sns-topic)). For example: `example` topic with `arn:aws:sns:eu-west-1:539199393808:example` ARN. Select the `Enable trigger` checkbox.
 
-![lambda_-_sns_trigger.png](lambda_-_sns_trigger.png "Create Amazon Lambda function. SNS trigger")
+![lambda_-_sns_trigger.png](img/lambda_-_sns_trigger.png "Create Amazon Lambda function. SNS trigger")
 
 [Create KMS Key](http://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html) or use an existing KMS Key. For example: `arn:aws:kms:eu-west-1:539199393808:key/4c3126f2-f3bf-453e-b32d-58c9356d84b7`.
 
 Go to `Lambda function code` section. Go to `Encryption configuration` subsection and select the `Enable helpers for encryption in transit` checkbox. Choose `AWS KMS key to encrypt in transit` (e.g. `arn:aws:kms:eu-west-1:539199393808:key/4c3126f2-f3bf-453e-b32d-58c9356d84b7`).
 
-![lambda_-_encryption_configuration.png](img/lambda_encryption_configuration.png "Create Amazon Lambda function. Encryption configuration")
+![lambda_-_encryption_configuration.png](img/lambda_-_encryption_configuration.png "Create Amazon Lambda function. Encryption configuration")
 
 Paste [Slack channel](#create-slack-webhook) into the `slackChannel` environment variable, like `example`. The Slack channel does not contain private info, so do NOT click `Encrypt` button.
 
