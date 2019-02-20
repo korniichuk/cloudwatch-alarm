@@ -207,6 +207,8 @@ Navigate to your lambda function (e.g. `example`). Go to `Function code` section
 
 ![lambda_-_upload_function_package.png](img/lambda_-_upload_function_package.png "Upgrade function. Upload function package")
 
+**Note:** We use [boto3](https://pypi.org/project/boto3/) ver. 1.9.41 and [botocore](https://pypi.org/project/botocore/) ver. 1.12.41 because [default Lambda's packages](https://docs.aws.amazon.com/lambda/latest/dg/current-supported-versions.html) do not support [get_metric_widget_image](https://boto3.amazonaws.com/v1/documentation/api/1.9.41/reference/services/cloudwatch.html#CloudWatch.Client.get_metric_widget_image) function.
+
 ## Edit AWS AIM role
 Navigate to https://console.aws.amazon.com/iam/. Select [your role](#create-function-base-from-blueprint) (e.g. `example`). Select `Permissions` tab. Click `Attach policies` button:
 
