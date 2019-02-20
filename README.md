@@ -15,6 +15,7 @@
 * **[Create Amazon CloudWatch Alarm](#create-amazon-cloudWatch-alarm)**
 * **[Create Amazon S3 bucket](#create-amazon-s3-bucket)**
 * **[Create Amazon Lambda function](#create-amazon-lambda-function)**
+  * **[Test Amazon Lambda function](#test-amazon-lambda-function)**
 * **[Change Slack message retention](#change-slack-message-retention)**
 
 ## Introduction
@@ -120,6 +121,19 @@ Paste [Slack channel](#create-slack-webhook) into the `slackChannel` environment
 Paste [Slack webhook URL](#create-slack-webhook) into the `kmsEncryptedHookUrl` environment variable. You must exclude the protocol from the URL (e.g. `hooks.slack.com/services/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`). Click `Encrypt` button. Finally click `Create function` button:
 
 ![lambda_-_environment_variables.png](img/lambda_-_environment_variables.png "Create Amazon Lambda function. Environment variables")
+
+### Test Amazon Lambda function
+Navigate to your lambda function (e.g. `example`). Click `Select a test event..` and select `Configure test events`:
+
+![lambda_-_configure_test_events.png](img/lambda_-_configure_test_events.png "Test Amazon Lambda function. Configure test events")
+
+Enter event name to `Event name` field (e.g. `Example`). Copy json code from [test-event.json](test-event.json) file to code area or enter your own. Click `Create` button:
+
+![lambda_-_create_new_test_event.png](img/lambda_-_create_new_test_event.png "Test Amazon Lambda function. Create new test event")
+
+Select created event (e.g. `Example`) and click `Test` button:
+
+![lambda_-_run_test.png](img/lambda_-_run_test.png "Test Amazon Lambda function. Run test")
 
 ## Change Slack message retention
 Navigate to Slack channel. Click `Channel Settings` icon. Select `Edit message retention...`:
