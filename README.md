@@ -15,6 +15,7 @@
 * **[Create Amazon CloudWatch Alarm](#create-amazon-cloudWatch-alarm)**
 * **[Create Amazon S3 bucket](#create-amazon-s3-bucket)**
 * **[Create Amazon Lambda function](#create-amazon-lambda-function)**
+  * **[Create function base from blueprint](#create-function-base-from-blueprint)**
   * **[Test Amazon Lambda function](#test-amazon-lambda-function)**
 * **[Change Slack message retention](#change-slack-message-retention)**
 
@@ -98,6 +99,7 @@ Configure expiration as below. Expire after 3 days. Permanently delete after 3 d
 ![s3_-_configure_expiration](img/s3_-_configure_expiration.png "Create Amazon S3 bucket. Configure expiration")
 
 ## Create Amazon Lambda function
+### Create function base from blueprint
 Navigate to https://console.aws.amazon.com/lambda/. Click `Create function`. Click `Blueprints`. Search for and select `cloudwatch-alarm-to-slack-python3`. Click `Configure` button:
 
 ![lambda_-_blueprints.png](img/lambda_-_blueprints.png "Create Amazon Lambda function. Blueprints")
