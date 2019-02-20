@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Version: 0.1a1
+# Version: 0.1a2
 
 import json
 import logging
@@ -36,7 +36,7 @@ def lambda_handler(event, context):
         "start": "-P1D",
         "end": "P0D",
         "timezone": "+0100"}"""
-    bucket_name = 'examplebucket' # for temporary public file
+    bucket_name = 'korniichuk' # for temporary public file
     filename = 'tmp/cloudwatch_metric_chart_%s.png' % uuid.uuid4()
 
     # Get MetricWidgetImage from CloudWatch Metrics

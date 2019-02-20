@@ -6,16 +6,17 @@
 ## Table of Contents
 * **[Introduction](#introduction)**
   * **[Amazon CloudWatch Alarm 2.0](#amazon-cloudwatch-alarm-20)**
-  * **[Standard Amazon CloudWatch Alarm](#standard-amazon-cloudWatch-alarm)**
+  * **[Standard Amazon CloudWatch Alarm](#standard-amazon-cloudwatch-alarm)**
 * **[How it works](#how-it-works)**
 * **[Requirements](#requirements)**
 * **[Python lib versions](#python-lib-versions)**
 * **[Create Slack webhook](#create-slack-webhook)**
 * **[Create Amazon SNS topic](#create-amazon-sns-topic)**
-* **[Create Amazon CloudWatch Alarm](#create-amazon-cloudWatch-alarm)**
+* **[Create Amazon CloudWatch Alarm](#create-amazon-cloudwatch-alarm)**
 * **[Create Amazon S3 bucket](#create-amazon-s3-bucket)**
 * **[Create Amazon Lambda function](#create-amazon-lambda-function)**
   * **[Create function base from blueprint](#create-function-base-from-blueprint)**
+  * **[Upgrade function base](#upgrade-function-base)**
   * **[Test Amazon Lambda function](#test-amazon-lambda-function)**
 * **[Change Slack message retention](#change-slack-message-retention)**
 
@@ -72,8 +73,10 @@ Saved json code example:
 ```
 {
     "metrics": [
-        [ "AWS/EC2", "CPUUtilization", "InstanceId", "i-0d91fdf2dbb765977" ]
+        [ "AWS/EC2", "CPUUtilization", "InstanceId", "i-0d91fdf2dbb765977", { "stat": "Average" } ]
     ],
+    "period": 300,
+    "title": "The percentage of CPU utilization",
     "start": "-PT3H",
     "end": "P0D",
     "timezone": "+0100"
@@ -90,7 +93,7 @@ Connect CloudWatch Alarm to [created SNS topic](#create-amazon-sns-topic) and fi
 **AWS docs:** https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html
 
 ## Create Amazon S3 bucket
-Navigate to https://console.aws.amazon.com/s3/ and create new S3 bucket (e.g. `examplebucket`). Create new lifecyle rule for bucket (e.g. `DeleteTmpAfter72h`) with `tmp/` prefix filter:
+Navigate to https://console.aws.amazon.com/s3/ and create new S3 bucket (e.g. `example`). Create new lifecyle rule for bucket (e.g. `DeleteTmpAfter72h`) with `tmp/` prefix filter:
 
 ![s3_-_lifecycle_rule.png](img/s3_-_lifecycle_rule.png "Create Amazon S3 bucket. Lifecycle rule")
 
@@ -123,6 +126,62 @@ Paste [Slack channel](#create-slack-webhook) into the `slackChannel` environment
 Paste [Slack webhook URL](#create-slack-webhook) into the `kmsEncryptedHookUrl` environment variable. You must exclude the protocol from the URL (e.g. `hooks.slack.com/services/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`). Click `Encrypt` button. Finally click `Create function` button:
 
 ![lambda_-_environment_variables.png](img/lambda_-_environment_variables.png "Create Amazon Lambda function. Environment variables")
+
+### Upgrade function base
+Clone [cloudwatch-alarm](https://github.com/korniichuk/cloudwatch-alarm):
+```
+$ git clone https://github.com/korniichuk/cloudwatch-alarm.git
+```
+
+Modify `cloudwatch-alarm/lambda_function.py` file. Replace `confluence_url` and `cloudwatch_url` var values. For example, from:
+```
+confluence_url = 'http://www.korniichuk.com'
+cloudwatch_url = 'http://www.korniichuk.com'
+```
+
+to:
+```
+confluence_url = 'https://bit.ly/1d3LdqJ'
+cloudwatch_url = 'https://amzn.to/2NeZooo'
+```
+
+Update `metric` var value with [saved Image API json](#create-amazon-cloudwatch-alarm). For example, from:
+```
+metric ="""{
+    "metrics": [[
+        "LogMetrics",
+        "MetricName",
+        {"period": 3600, "stat": "Sum"}]],
+    "title": "Title",
+    "start": "-P1D",
+    "end": "P0D",
+    "timezone": "+0100"}"""
+```
+
+to:
+```
+metric ="""{
+    "metrics": [[
+        "AWS/EC2",
+        "CPUUtilization",
+        "InstanceId",
+        "i-0d91fdf2dbb765977",
+        {"period": 300, "stat": "Average"}]],
+    "title": "The percentage of CPU utilization",
+    "start": "-PT3H",
+    "end": "P0D",
+    "timezone": "+0100"}"""
+```
+
+Replace `bucket_name` var value to [your bucket name](#create-amazon-s3-bucket). For example, from:
+```
+bucket_name = 'korniichuk'
+```
+
+to:
+```
+bucket_name = 'example'
+```
 
 ### Test Amazon Lambda function
 Navigate to your lambda function (e.g. `example`). Click `Select a test event..` and select `Configure test events`:
