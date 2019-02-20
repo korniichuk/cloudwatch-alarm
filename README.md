@@ -17,6 +17,7 @@
 * **[Create Amazon Lambda function](#create-amazon-lambda-function)**
   * **[Create function base from blueprint](#create-function-base-from-blueprint)**
   * **[Upgrade function](#upgrade-function)**
+* **[Edit AWS AIM role](#edit-aws-aim-role)**
 * **[Test Amazon Lambda function](#test-amazon-lambda-function)**
 * **[Change Slack message retention](#change-slack-message-retention)**
 
@@ -194,9 +195,20 @@ Prepare `zip.zip` with `lambda_function.py` file and Python dependencies:
 $ zip -r zip.zip .
 ```
 
-Navigate to your lambda function (e.g. `example`). Go to `Function code` section and select `Upload a .zip file` from `Code entry type` dropdown. Click `Upload` button. Finally click `Save` button:
+Navigate to your lambda function (e.g. `example`). Go to `Function code` section and select `Upload a .zip file` from `Code entry type` dropdown. Click `Upload` button. Upload `zip.zip` file. Finally click `Save` button:
 
 ![lambda_-_upload_function_package.png](img/lambda_-_upload_function_package.png "Upgrade function. Upload function package")
+
+## Edit AWS AIM role
+Navigate to https://console.aws.amazon.com/iam/. Select [your role](#create-function-base-from-blueprint) (e.g. `example`). Select `Permissions` tab. Click `Attach policies` button:
+
+![aim_-_permissions.png](img/aim_-_permissions.png "Edit AWS AIM role. Permissions")
+
+Search for and select `AmazonS3FullAccess` and `CloudWatchFullAccess`. Click `Attach policy` button. See final result below.
+
+![aim_-_summary.png](img/aim_-_summary.png "Edit AWS AIM role. Summary")
+
+**Note:** Do not use `*FullAccess` roles on production. You can grant access to concrete S3 bucket (e.g. `example`). You can precisize `CloudWatchFullAccess` policy to `cloudwatch:*` plus `"logs:*"` only.
 
 ## Test Amazon Lambda function
 Navigate to your lambda function (e.g. `example`). Click `Select a test event..` and select `Configure test events`:
