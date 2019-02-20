@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Version: 0.1a2
+# Version: 0.1a3
 
 import json
 import logging
@@ -27,7 +27,7 @@ def lambda_handler(event, context):
     cloudwatch_url = 'http://www.korniichuk.com'
     icon_url = 'https://raw.githubusercontent.com/korniichuk/' \
                'cloudwatch-alarm/master/img/amazon_cloudwatch_icon.png'
-    metric ="""{
+    metric = """{
         "metrics": [[
             "LogMetrics",
             "MetricName",

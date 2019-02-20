@@ -16,8 +16,8 @@
 * **[Create Amazon S3 bucket](#create-amazon-s3-bucket)**
 * **[Create Amazon Lambda function](#create-amazon-lambda-function)**
   * **[Create function base from blueprint](#create-function-base-from-blueprint)**
-  * **[Upgrade function base](#upgrade-function-base)**
-  * **[Test Amazon Lambda function](#test-amazon-lambda-function)**
+  * **[Upgrade function](#upgrade-function)**
+* **[Test Amazon Lambda function](#test-amazon-lambda-function)**
 * **[Change Slack message retention](#change-slack-message-retention)**
 
 ## Introduction
@@ -33,7 +33,7 @@
 ## Requirements
 Please, install Python packages:
 ```
-$ sudo pip install -t . -r requirements.txt
+$ pip install -t . -r requirements.txt
 ```
 
 ## Python lib versions
@@ -127,8 +127,8 @@ Paste [Slack webhook URL](#create-slack-webhook) into the `kmsEncryptedHookUrl` 
 
 ![lambda_-_environment_variables.png](img/lambda_-_environment_variables.png "Create Amazon Lambda function. Environment variables")
 
-### Upgrade function base
-Clone [cloudwatch-alarm](https://github.com/korniichuk/cloudwatch-alarm):
+### Upgrade function
+Clone [cloudwatch-alarm](https://github.com/korniichuk/cloudwatch-alarm) repository:
 ```
 $ git clone https://github.com/korniichuk/cloudwatch-alarm.git
 ```
@@ -147,7 +147,7 @@ cloudwatch_url = 'https://amzn.to/2NeZooo'
 
 Update `metric` var value with [saved Image API json](#create-amazon-cloudwatch-alarm). For example, from:
 ```
-metric ="""{
+metric = """{
     "metrics": [[
         "LogMetrics",
         "MetricName",
@@ -160,7 +160,7 @@ metric ="""{
 
 to:
 ```
-metric ="""{
+metric = """{
     "metrics": [[
         "AWS/EC2",
         "CPUUtilization",
@@ -183,7 +183,22 @@ to:
 bucket_name = 'example'
 ```
 
-### Test Amazon Lambda function
+Navigate to cloned `cloudwatch-alarm` repository and install Python packages:
+```
+$ cd cloudwatch-alarm
+$ pip install -t . -r requirements.txt
+```
+
+Prepare `zip.zip` with `lambda_function.py` file and Python dependencies:
+```
+$ zip -r zip.zip .
+```
+
+Navigate to your lambda function (e.g. `example`). Go to `Function code` section and select `Upload a .zip file` from `Code entry type` dropdown. Click `Upload` button. Finally click `Save` button:
+
+![lambda_-_upload_function_package.png](img/lambda_-_upload_function_package.png "Upgrade function. Upload function package")
+
+## Test Amazon Lambda function
 Navigate to your lambda function (e.g. `example`). Click `Select a test event..` and select `Configure test events`:
 
 ![lambda_-_configure_test_events.png](img/lambda_-_configure_test_events.png "Test Amazon Lambda function. Configure test events")
