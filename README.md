@@ -15,6 +15,7 @@
 * **[Create Amazon CloudWatch Alarm](#create-amazon-cloudWatch-alarm)**
 * **[Create Amazon S3 bucket](#create-amazon-s3-bucket)**
 * **[Create Amazon Lambda function](#create-amazon-lambda-function)**
+* **[Change Slack message retention](#change-slack-message-retention)**
 
 ## Introduction
 ### Amazon CloudWatch Alarm 2.0
@@ -39,7 +40,7 @@ $ sudo pip install -t . -r requirements.txt
 ## Create Slack webhook
 Navigate to https://`<your-team-domain>`.slack.com/apps, like https://example.slack.com/apps. Search for and select `Incoming WebHooks`. Click `Add Configuration` button:
 
-![slack_-_add_configuration.png](img/slack_-_add_configuration.png "Create Slack webhook. Add Configuration")
+![slack_-_add_configuration.png](img/slack_-_add_configuration.png "Create Slack webhook. Add configuration")
 
 Choose the default channel where messages will be sent (like `#example`) and click `Add Incoming WebHooks Integration`. Copy and save the webhook URL (like https://hooks.slack.com/services/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) from the setup instructions.
 
@@ -108,7 +109,7 @@ Go to `SNS trigger` section and select [your SNS topic](#create-amazon-sns-topic
 
 [Create KMS Key](http://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html) or use an existing KMS Key. For example: `arn:aws:kms:eu-west-1:539199393808:key/4c3126f2-f3bf-453e-b32d-58c9356d84b7`.
 
-Go to `Lambda function code` section. Go to `Encryption configuration` subsection and select the `Enable helpers for encryption in transit` checkbox. Choose `AWS KMS key to encrypt in transit` (e.g. `arn:aws:kms:eu-west-1:539199393808:key/4c3126f2-f3bf-453e-b32d-58c9356d84b7`).
+Go to `Lambda function code` section. Go to `Encryption configuration` subsection and select the `Enable helpers for encryption in transit` checkbox. Select `AWS KMS key to encrypt in transit` (e.g. `arn:aws:kms:eu-west-1:539199393808:key/4c3126f2-f3bf-453e-b32d-58c9356d84b7`).
 
 ![lambda_-_encryption_configuration.png](img/lambda_-_encryption_configuration.png "Create Amazon Lambda function. Encryption configuration")
 
@@ -117,3 +118,12 @@ Paste [Slack channel](#create-slack-webhook) into the `slackChannel` environment
 Paste [Slack webhook URL](#create-slack-webhook) into the `kmsEncryptedHookUrl` environment variable. You must exclude the protocol from the URL (e.g. `hooks.slack.com/services/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`). Click `Encrypt` button. Finally click `Create function` button:
 
 ![lambda_-_environment_variables.png](img/lambda_-_environment_variables.png "Create Amazon Lambda function. Environment variables")
+
+## Change Slack message retention
+Navigate to Slack channel. Click `Channel Settings` icon. Select `Edit message retention...`:
+
+![slack_-_channel_settings.png](img/slack_-_channel_settings.png "Change Slack message retention. Channel settings")
+
+Change default message retention to `3 Days`. Click `Save` button:
+
+![slack_-_retention_settings.png](img/slack_-_retention_settings.png "Change Slack message retention. Renetion settings")
