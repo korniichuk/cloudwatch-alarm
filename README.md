@@ -102,6 +102,14 @@ Configure expiration as below. Expire after 3 days. Permanently delete after 3 d
 
 ![s3_-_configure_expiration](img/s3_-_configure_expiration.png "Create Amazon S3 bucket. Configure expiration")
 
+Edit public access settings to your S3 bucket. Select your S3 bucket (e.g. `example`) and click `Edit public access settings` button. Deselect all checkboxes and click `Save` button:
+
+![s3_-_edit_public_access_settings.png](img/s3_-_edit_public_access_settings.png "Create Amazon S3 bucket. Edit public access settings")
+
+Enter `confirm` to `confirm` field and click `Confirm` button:
+
+![s3_-_confirm_public_access_settings.png](img/s3_-_confirm_public_access_settings.png "Create Amazon S3 bucket. Confirm public access settings")
+
 ## Create Amazon Lambda function
 ### Create function base from blueprint
 Navigate to https://console.aws.amazon.com/lambda/. Click `Create function`. Click `Blueprints`. Search for and select `cloudwatch-alarm-to-slack-python3`. Click `Configure` button:
@@ -208,7 +216,7 @@ Search for and select `AmazonS3FullAccess` and `CloudWatchFullAccess`. Click `At
 
 ![aim_-_summary.png](img/aim_-_summary.png "Edit AWS AIM role. Summary")
 
-**Note:** Do not use `*FullAccess` roles on production. You can grant access to concrete S3 bucket (e.g. `example`). You can precisize `CloudWatchFullAccess` policy to `cloudwatch:*` plus `"logs:*"` only.
+**Note:** Do not use `*FullAccess` roles on production. You can grant access to concrete S3 bucket (e.g. `example`). You can precisize `CloudWatchFullAccess` policy to `cloudwatch:*` plus `logs:*` only.
 
 ## Test Amazon Lambda function
 Navigate to your lambda function (e.g. `example`). Click `Select a test event..` and select `Configure test events`:
