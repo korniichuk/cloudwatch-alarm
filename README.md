@@ -17,7 +17,7 @@
 * **[Create Amazon Lambda function](#create-amazon-lambda-function)**
   * **[Create function base from blueprint](#create-function-base-from-blueprint)**
   * **[Upgrade function](#upgrade-function)**
-* **[Edit AWS AIM role](#edit-aws-aim-role)**
+* **[Edit AWS IAM role](#edit-aws-iam-role)**
 * **[Test Amazon Lambda function](#test-amazon-lambda-function)**
 * **[Change Slack message retention](#change-slack-message-retention)**
 
@@ -209,14 +209,14 @@ Navigate to your lambda function (e.g. `example`). Go to `Function code` section
 
 **Note:** We use [boto3](https://pypi.org/project/boto3/) ver. 1.9.41 and [botocore](https://pypi.org/project/botocore/) ver. 1.12.41 because [default Lambda's packages](https://docs.aws.amazon.com/lambda/latest/dg/current-supported-versions.html) do not support [get_metric_widget_image](https://boto3.amazonaws.com/v1/documentation/api/1.9.41/reference/services/cloudwatch.html#CloudWatch.Client.get_metric_widget_image) function.
 
-## Edit AWS AIM role
+## Edit AWS IAM role
 Navigate to https://console.aws.amazon.com/iam/. Select [your role](#create-function-base-from-blueprint) (e.g. `example`). Select `Permissions` tab. Click `Attach policies` button:
 
-![aim_-_permissions.png](img/aim_-_permissions.png "Edit AWS AIM role. Permissions")
+![iam_-_permissions.png](img/iam_-_permissions.png "Edit AWS IAM role. Permissions")
 
 Search for and select `AmazonS3FullAccess` and `CloudWatchFullAccess`. Click `Attach policy` button. See final result below.
 
-![aim_-_summary.png](img/aim_-_summary.png "Edit AWS AIM role. Summary")
+![iam_-_summary.png](img/iam_-_summary.png "Edit AWS IAM role. Summary")
 
 **Note:** Do not use `*FullAccess` roles on production. You can grant access to concrete S3 bucket (e.g. `example`). You can precisize `CloudWatchFullAccess` policy to `cloudwatch:*` plus `logs:*` only.
 
