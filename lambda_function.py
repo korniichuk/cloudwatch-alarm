@@ -1,16 +1,15 @@
 # -*- coding: utf-8 -*-
-# Version: 0.1a3
+# Version: 0.1a4
 
 import json
 import logging
 import os
 import uuid
+from base64 import b64decode
+from urllib.error import URLError, HTTPError
+from urllib.request import Request, urlopen
 
 import boto3
-
-from base64 import b64decode
-from urllib.request import Request, urlopen
-from urllib.error import URLError, HTTPError
 
 ENCRYPTED_HOOK_URL = os.environ['kmsEncryptedHookUrl']
 SLACK_CHANNEL = os.environ['slackChannel']
