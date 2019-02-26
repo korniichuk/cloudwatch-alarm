@@ -182,6 +182,8 @@ metric = """{
     "timezone": "+0100"}"""
 ```
 
+**Docs:** [Metric widget structure and syntax](https://docs.aws.amazon.com/en_us/AmazonCloudWatch/latest/APIReference/CloudWatch-Metric-Widget-Structure.html)
+
 Replace `bucket_name` var value to [your bucket name](#create-amazon-s3-bucket). For example, from:
 ```
 bucket_name = 'korniichuk'
