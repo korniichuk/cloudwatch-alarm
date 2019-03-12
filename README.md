@@ -236,6 +236,8 @@ Select created event (e.g. `Example`) and click `Test` button:
 
 ![lambda_-_run_test.png](img/lambda_-_run_test.png "Test Amazon Lambda function. Run test")
 
+**Note:** You can [maximize CPU utilization](https://stackoverflow.com/questions/2925606/how-to-create-a-cpu-spike-with-a-bash-command) with `$ dd if=/dev/zero of=/dev/null` command.
+
 ## Change Slack message retention
 Navigate to Slack channel. Click `Channel Settings` icon. Select `Edit message retention...`:
 
