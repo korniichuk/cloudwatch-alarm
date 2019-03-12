@@ -202,6 +202,7 @@ $ pip install -t . -r requirements.txt
 
 Prepare `zip.zip` with `lambda_function.py` file and Python dependencies:
 ```
+$ rm -r *.dist-info __pycache__
 $ zip -r zip.zip .
 ```
 
