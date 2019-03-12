@@ -46,7 +46,7 @@ Navigate to https://`<your-team-domain>`.slack.com/apps, like https://example.sl
 
 ![slack_-_add_configuration.png](img/slack_-_add_configuration.png "Create Slack webhook. Add configuration")
 
-Choose the default channel where messages will be sent (like `#example`) and click `Add Incoming WebHooks Integration`. Copy and save the webhook URL (like https://hooks.slack.com/services/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) from the setup instructions.
+Choose the default channel where messages will be sent (like `#example`) and click `Add Incoming WebHooks integration`. Copy and save the webhook URL (like https://hooks.slack.com/services/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) from the setup instructions.
 
 **Note:** You need admin rights to your Slack.
 
