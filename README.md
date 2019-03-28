@@ -74,9 +74,8 @@ Saved json code example:
 ```
 {
     "metrics": [
-        [ "AWS/EC2", "CPUUtilization", "InstanceId", "i-0d91fdf2dbb765977", { "stat": "Average" } ]
+        [ "AWS/EC2", "CPUUtilization", "InstanceId", "i-0d91fdf2dbb765977", { "period": 300, "stat": "Average" } ]
     ],
-    "period": 300,
     "title": "The percentage of CPU utilization",
     "start": "-PT3H",
     "end": "P0D",
